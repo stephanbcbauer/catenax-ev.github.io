@@ -312,7 +312,7 @@ BPNs are **permanent and immutable**. Once assigned, a BPNL is never changed or 
 - **CX-0074** - Business Partner Gate API *(See [Standards](../../standards/overview))*
 - **CX-0076** - Golden Record End-to-End Requirements *(See [Standards](../../standards/overview))*
 - **CX-0077** - Data Quality Dashboard *(See [Standards](../../standards/overview))*
-- [SSI Workflow](../ssi-workflow) — How BPNs are embedded in credentials
+- [SSI Workflow](../identity-trust/ssi-workflow) — How BPNs are embedded in credentials
 - [ODRL Policy Framework](../data-sovereignty/odrl-policy-framework) — BPN in access policies
 
 ## References

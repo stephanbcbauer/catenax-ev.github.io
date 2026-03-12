@@ -138,7 +138,7 @@ The BDRS maps BPN (Business Partner Numbers) to DID (Decentralized Identifiers),
 
 ### Wallet / DIM (Decentralized Identity Management)
 
-The wallet service stores the participant's Verifiable Credentials and presents them during connector authentication. See [SSI Workflow](../ssi-workflow) and [Issuer Concept](../issuer-concept) for details.
+The wallet service stores the participant's Verifiable Credentials and presents them during connector authentication. See [SSI Workflow](../identity-trust/ssi-workflow) and [Issuer Concept](../identity-trust/issuer-concept) for details.
 
 ### IATPMOCK / IAT Provider
 

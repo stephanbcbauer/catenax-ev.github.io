@@ -403,7 +403,7 @@ Consumers should **cache valid agreements** and reuse them for multiple data tra
 
 - [ODRL Policy Framework](./odrl-policy-framework) — Understanding the policy language
 - [EDC Connector Architecture](./edc-connector-architecture) — The technical component executing negotiations
-- [SSI Workflow](../ssi-workflow) — Identity verification during negotiation
+- [SSI Workflow](../identity-trust/ssi-workflow) — Identity verification during negotiation
 
 ## References
 

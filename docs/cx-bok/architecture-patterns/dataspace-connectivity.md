@@ -356,7 +356,7 @@ flowchart LR
 
 - [EDC Connector Architecture](../data-sovereignty/edc-connector-architecture) — Deep dive into the EDC
 - [ODRL Policy Framework](../data-sovereignty/odrl-policy-framework) — How policies work
-- [SSI Workflow](../ssi-workflow) — Identity and authentication
+- [SSI Workflow](../identity-trust/ssi-workflow) — Identity and authentication
 - [Digital Twin Concepts](../semantic-interoperability/digital-twin-concepts) — What is being exchanged
 
 ## References

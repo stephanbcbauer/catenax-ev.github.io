@@ -629,7 +629,7 @@ Certification credential workflow:
 
 ### Related Documentation
 - [SSI Workflow](./ssi-workflow) - Understanding SSI in Catena-X
-- [Architecture Guardrails](../architecture-guardrails/overview.md)
+- [Architecture Guardrails](../../architecture-guardrails/overview.md)
 
 ### Standards
 - [W3C Verifiable Credentials](https://www.w3.org/TR/vc-data-model/)
