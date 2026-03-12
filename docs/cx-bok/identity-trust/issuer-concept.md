@@ -1,6 +1,6 @@
 ---
 title: Issuer Concept and Credential Management
-sidebar_position: 3
+sidebar_position: 2
 ---
 
 # Issuer Concept and Credential Management

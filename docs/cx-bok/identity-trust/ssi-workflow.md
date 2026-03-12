@@ -1,6 +1,6 @@
 ---
 title: Self-Sovereign Identity (SSI) Workflow
-sidebar_position: 2
+sidebar_position: 1
 ---
 
 # Self-Sovereign Identity (SSI) Workflow
@@ -126,16 +126,16 @@ The entity that verifies presentations of credentials.
 
 ```mermaid
 sequenceDiagram
-    participant Participant
+    participant Organization
     participant Wallet
     participant DIDRegistry
     
-    Participant->>Wallet: Create new identity
+    Organization->>Wallet: Create new identity
     Wallet->>Wallet: Generate key pair
     Wallet->>Wallet: Create DID
     Wallet->>DIDRegistry: Register DID Document
     DIDRegistry-->>Wallet: Confirmation
-    Wallet-->>Participant: DID & keys ready
+    Wallet-->>Organization: DID & keys ready
 ```
 
 **Steps**:

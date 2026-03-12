@@ -35,8 +35,8 @@ The CX BOK is organized into five thematic areas:
 
 Documentation on identity management, trust frameworks, and authentication mechanisms.
 
-- [Self-Sovereign Identity (SSI) Workflow](./ssi-workflow) — Core SSI concepts, DID/VC workflow, key management
-- [Issuer Concept and Credential Management](./issuer-concept) — Types of issuers, credential lifecycle, governance
+- [Self-Sovereign Identity (SSI) Workflow](./identity-trust/ssi-workflow) — Core SSI concepts, DID/VC workflow, key management
+- [Issuer Concept and Credential Management](./identity-trust/issuer-concept) — Types of issuers, credential lifecycle, governance
 
 ### 📊 Data Sovereignty & Exchange
 
@@ -83,7 +83,7 @@ The CX BOK explains business concepts and workflows in technical detail, helping
 :::
 
 :::tip For Newcomers
-Start with [SSI Workflow](./ssi-workflow) to understand identity in Catena-X, then read [EDC Connector Architecture](./data-sovereignty/edc-connector-architecture) to understand data exchange, and then explore [Industry Core](./use-cases/industry-core) to understand the foundational use case.
+Start with [SSI Workflow](./identity-trust/ssi-workflow) to understand identity in Catena-X, then read [EDC Connector Architecture](./data-sovereignty/edc-connector-architecture) to understand data exchange, and then explore [Industry Core](./use-cases/industry-core) to understand the foundational use case.
 :::
 
 ## Knowledge Sources
@@ -159,7 +159,7 @@ Cross-references link related concepts, standards, and guardrails.
 
 ### 🔥 Foundation Topics (Start Here)
 
-1. **[SSI Workflow](./ssi-workflow)** — Understand how identity works in Catena-X
+1. **[SSI Workflow](./identity-trust/ssi-workflow)** — Understand how identity works in Catena-X
 2. **[EDC Connector Architecture](./data-sovereignty/edc-connector-architecture)** — Understand how data exchange works
 3. **[Industry Core](./use-cases/industry-core)** — Understand the foundational use case
 
