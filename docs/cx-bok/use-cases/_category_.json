@@ -1,0 +1,8 @@
+{
+  "label": "🔍 Use Case Deep Dives",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "description": "Detailed explorations of Catena-X use cases, their technical implementations, and the data models and workflows they rely on."
+  }
+}
