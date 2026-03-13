@@ -135,3 +135,4 @@ flowchart TB
 - [Overview](./tractus-x-overview.md) — the three-layer model
 - [Governance Model](./governance-model.md) — how both governance systems work
 - [Contribution Process](./contribution-process.md) — step-by-step guide for getting content into Tractus-X
+- [Funding & Resources](./funding.md) — where the money and engineering capacity come from

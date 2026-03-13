@@ -137,3 +137,4 @@ Eclipse Foundation governance ensures that Tractus-X can survive changes in the 
 - [Overview](./tractus-x-overview.md) — the three-layer model
 - [Responsibilities](./responsibilities.md) — who owns reference implementations and KITs
 - [Contribution Process](./contribution-process.md) — step-by-step guide for contributing from Catena-X to Tractus-X
+- [Funding & Resources](./funding.md) — where the money and engineering capacity come from

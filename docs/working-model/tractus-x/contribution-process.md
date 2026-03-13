@@ -143,4 +143,5 @@ Contributions are made by association members (individuals at member companies).
 - [Overview](./tractus-x-overview.md) — the three-layer model
 - [Governance Model](./governance-model.md) — how both governance systems work
 - [Responsibilities](./responsibilities.md) — who owns reference implementations and KITs
+- [Funding & Resources](./funding.md) — where the money and engineering capacity come from
 - [Tractus-X Release Process](../process-structure/process-tractus-x.md) — detailed release process documentation

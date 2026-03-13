@@ -118,6 +118,7 @@ Eclipse Tractus-X provides the open-source implementation layer that makes the e
 - [Governance Model](./governance-model.md) — in-depth look at how both governance systems work and interact
 - [Responsibilities](./responsibilities.md) — who is responsible for reference implementations and KITs
 - [Contribution Process](./contribution-process.md) — how Catena-X content flows into Eclipse Tractus-X
+- [Funding & Resources](./funding.md) — where the money and engineering capacity come from
 
 :::warning[NOTE]
 This is not a normative document.
