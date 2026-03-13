@@ -1,0 +1,8 @@
+{
+  "label": "🔐 Identity & Trust",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Documentation on self-sovereign identity (SSI), decentralized identifiers (DIDs), verifiable credentials, issuers, and the trust framework that underpins the Catena-X data space."
+  }
+}

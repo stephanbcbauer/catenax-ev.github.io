@@ -1,0 +1,8 @@
+{
+  "label": "📊 Data Sovereignty & Exchange",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Concepts related to data sovereignty, ODRL policies, connector architecture, and data exchange in the Catena-X data space."
+  }
+}
