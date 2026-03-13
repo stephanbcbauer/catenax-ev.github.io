@@ -29,10 +29,10 @@ Catena-X is organized as a registered association (*eingetragener Verein*, e.V.)
 
 ```mermaid
 flowchart TD
-    MB["Management Board\n(Strategic Direction)"]
-    C["Committees\n(Domain Ownership)"]
-    EG["Expert Groups\n(Technical Content)"]
-    AM["Association Members\n(Participation & Input)"]
+    MB["Management Board<br/>(Strategic Direction)"]
+    C["Committees<br/>(Domain Ownership)"]
+    EG["Expert Groups<br/>(Technical Content)"]
+    AM["Association Members<br/>(Participation & Input)"]
 
     MB --> C
     C --> EG
@@ -66,11 +66,11 @@ No change can be merged without Committer approval, regardless of who submitted 
 
 ```mermaid
 flowchart LR
-    C["Contributor\n(anyone)"]
-    PR["Pull Request\nSubmission"]
+    C["Contributor<br/>(anyone)"]
+    PR["Pull Request<br/>Submission"]
     R["Community Review"]
-    CM["Committer Review\n& Approval"]
-    M["Merge into\nTractus-X"]
+    CM["Committer Review<br/>& Approval"]
+    M["Merge into<br/>Tractus-X"]
 
     C --> PR
     PR --> R
@@ -99,11 +99,11 @@ flowchart TB
         MERGE["Merge"]
     end
 
-    EG -- "Requirements &\nSpecifications" --> PR
-    COM -- "Reviews &\nAlignment" --> PR
+    EG -- "Requirements &<br/>Specifications" --> PR
+    COM -- "Reviews &<br/>Alignment" --> PR
     PR --> REV
     REV --> MERGE
-    MERGE -- "Reference\nImplementation / KIT" --> OUT["Ecosystem Adoption"]
+    MERGE -- "Reference<br/>Implementation / KIT" --> OUT["Ecosystem Adoption"]
 ```
 
 ### Alignment Without Overriding

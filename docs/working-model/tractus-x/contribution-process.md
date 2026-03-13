@@ -18,14 +18,14 @@ This guide is relevant for:
 
 ```mermaid
 flowchart LR
-    A["Catena-X\nExpert Group\nDefines Requirements"]
-    B["Prepare\nContent /\nSpecification"]
-    C["Create PR in\nTractus-X\nRepository"]
-    D["Community\nReview"]
-    E["Eclipse Tractus-X\nCommitter\nReview"]
-    F["Merge into\nTractus-X"]
-    G["Reference\nImplementation / KIT\nPublished"]
-    H["Ecosystem\nAdoption"]
+    A["Catena-X<br/>Expert Group<br/>Defines Requirements"]
+    B["Prepare<br/>Content /<br/>Specification"]
+    C["Create PR in<br/>Tractus-X<br/>Repository"]
+    D["Community<br/>Review"]
+    E["Eclipse Tractus-X<br/>Committer<br/>Review"]
+    F["Merge into<br/>Tractus-X"]
+    G["Reference<br/>Implementation / KIT<br/>Published"]
+    H["Ecosystem<br/>Adoption"]
 
     A --> B
     B --> C

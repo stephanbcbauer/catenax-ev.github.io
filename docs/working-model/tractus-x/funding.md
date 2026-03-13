@@ -54,19 +54,19 @@ KIT development is funded entirely through **in-kind contribution** from Catena-
 ```mermaid
 flowchart TB
     subgraph FUNDING["Funding Sources"]
-        MC["Member Company\nEngineering Capacity"]
-        MF["Association\nMembership Fees"]
+        MC["Member Company<br/>Engineering Capacity"]
+        MF["Association<br/>Membership Fees"]
     end
 
     subgraph WORK["Work Products"]
-        KIT["KIT Content\n(Expert Groups)"]
-        STD["Standards\n(Standardization Process)"]
-        RI["Reference\nImplementation"]
-        INF["Association\nInfrastructure"]
+        KIT["KIT Content<br/>(Expert Groups)"]
+        STD["Standards<br/>(Standardization Process)"]
+        RI["Reference<br/>Implementation"]
+        INF["Association<br/>Infrastructure"]
     end
 
-    MC -- "In-kind:\nengineers & experts" --> KIT
-    MC -- "In-kind:\nengineers & experts" --> RI
+    MC -- "In-kind:<br/>engineers & experts" --> KIT
+    MC -- "In-kind:<br/>engineers & experts" --> RI
     MF -- "Funds" --> STD
     MF -- "Funds" --> INF
 ```
@@ -94,11 +94,11 @@ Reference implementations are developed and maintained by the **Eclipse Tractus-
 
 ```mermaid
 flowchart LR
-    A["Catena-X\nMember Companies"]
-    B["Assign Engineers to\nTractus-X Contributions"]
-    C["Feature Development\nin Open Source"]
-    D["Eclipse Committer\nReview & Merge"]
-    E["Reference Implementation\nAvailable to All"]
+    A["Catena-X<br/>Member Companies"]
+    B["Assign Engineers to<br/>Tractus-X Contributions"]
+    C["Feature Development<br/>in Open Source"]
+    D["Eclipse Committer<br/>Review & Merge"]
+    E["Reference Implementation<br/>Available to All"]
 
     A --> B
     B --> C
@@ -125,12 +125,12 @@ The following diagram shows how resource commitment flows through the planning a
 
 ```mermaid
 flowchart TB
-    PR["Catena-X\nPrioritization\n(Committees)"]
-    OP["Open Planning\n(Tractus-X)"]
-    RC["Resource Commitment\n(Member Companies)"]
-    DEV["Development\n(Contributors)"]
-    REL["Release\n(KIT / Ref. Impl.)"]
-    ECO["Ecosystem\nAdoption"]
+    PR["Catena-X<br/>Prioritization<br/>(Committees)"]
+    OP["Open Planning<br/>(Tractus-X)"]
+    RC["Resource Commitment<br/>(Member Companies)"]
+    DEV["Development<br/>(Contributors)"]
+    REL["Release<br/>(KIT / Ref. Impl.)"]
+    ECO["Ecosystem<br/>Adoption"]
 
     PR --> OP
     OP --> RC

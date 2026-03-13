@@ -48,12 +48,12 @@ A reference implementation is not a production-ready product. It is a technical 
 
 ```mermaid
 flowchart LR
-    EG["Expert Group\nDefines Standard"]
-    COM["Committee\nApproves & Prioritizes"]
-    OP["Open Planning\nFeature Proposal"]
-    DEV["Community\nDevelopment"]
-    CM["Committer\nReview & Merge"]
-    RI["Reference\nImplementation Released"]
+    EG["Expert Group<br/>Defines Standard"]
+    COM["Committee<br/>Approves & Prioritizes"]
+    OP["Open Planning<br/>Feature Proposal"]
+    DEV["Community<br/>Development"]
+    CM["Committer<br/>Review & Merge"]
+    RI["Reference<br/>Implementation Released"]
 
     EG --> COM
     COM --> OP
@@ -108,16 +108,16 @@ Each Catena-X Committee owns the KITs in its business domain. The Committee is r
 ```mermaid
 flowchart TB
     subgraph CX["Catena-X"]
-        UC["Use Cases\n& Requirements"]
-        STD["Standards\n& Aspect Models"]
-        KIT_DEF["KIT Content\n(Expert Groups)"]
-        COM_REV["Committee\nReview"]
+        UC["Use Cases<br/>& Requirements"]
+        STD["Standards<br/>& Aspect Models"]
+        KIT_DEF["KIT Content<br/>(Expert Groups)"]
+        COM_REV["Committee<br/>Review"]
     end
 
     subgraph TX["Eclipse Tractus-X"]
         PR["Pull Request"]
-        REVIEW["Committer\nReview"]
-        RI["Reference\nImplementation"]
+        REVIEW["Committer<br/>Review"]
+        RI["Reference<br/>Implementation"]
         KIT_PUB["Published KIT"]
     end
 
