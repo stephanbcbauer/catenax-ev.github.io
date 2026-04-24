@@ -96,23 +96,37 @@ jobs:
               if (!node) return null;
               const num      = node.number;           // e.g. "0001"
               const stdOwner = ownerData.standards[num];
-              if (!stdOwner) return { node, committee: null, expertGroup: null };
+              if (!stdOwner) return { node, committeeId: null, committee: null, expertGroupId: null, expertGroup: null };
 
-              const committee = stdOwner.committeeId
-                ? ownerData.committees[stdOwner.committeeId] ?? null
-                : null;
-              const expertGroup = stdOwner.expertGroupId
-                ? ownerData.expertGroups[stdOwner.expertGroupId] ?? null
-                : null;
+              const committeeId  = stdOwner.committeeId  ?? null;
+              const expertGroupId = stdOwner.expertGroupId ?? null;
+              const committee    = committeeId  ? ownerData.committees[committeeId]   ?? null : null;
+              const expertGroup  = expertGroupId ? ownerData.expertGroups[expertGroupId] ?? null : null;
 
-              return { node, committee, expertGroup };
+              return { node, committeeId, committee, expertGroupId, expertGroup };
+            }
+
+            // Helper: derive the GitHub @org/team mention from a team URL, falling back to the id.
+            // Only alphanumeric characters and hyphens are accepted for org and team slug values.
+            const SLUG_RE = /^[a-zA-Z0-9-]+$/;
+            function teamMention(id, teamObj) {
+              if (!id) return null;
+              // URL format: https://github.com/orgs/<org>/teams/<slug>
+              const urlMatch = teamObj?.url?.match(/orgs\/([^/]+)\/teams\/([^/]+)/);
+              if (urlMatch) {
+                const [, org, slug] = urlMatch;
+                if (SLUG_RE.test(org) && SLUG_RE.test(slug)) return `@${org}/${slug}`;
+              }
+              // Fallback: assume the catenax-eV org and use the id as the slug
+              if (SLUG_RE.test(id)) return `@catenax-eV/${id}`;
+              return null;
             }
 
             // Helper: format a single standard row for the comment table
             function formatRow(nodeId) {
               const info = getOwnerInfo(nodeId);
               if (!info) return null;
-              const { node, committee, expertGroup } = info;
+              const { node, committeeId, committee, expertGroupId, expertGroup } = info;
               const cxId    = `CX-${node.number}`;
               const title   = node.title ?? '—';
               const path    = node.path
@@ -120,13 +134,18 @@ jobs:
                 : null;
               const stdLink = path ? `[${cxId}: ${title}](${path})` : `${cxId}: ${title}`;
 
+              const committeeMention = teamMention(committeeId, committee);
               const committeeStr = committee
-                ? (committee.url ? `[${committee.label}](${committee.url})` : committee.label)
+                ? (committee.url
+                    ? `[${committee.label}](${committee.url})${committeeMention ? ` (${committeeMention})` : ''}`
+                    : `${committee.label}${committeeMention ? ` (${committeeMention})` : ''}`)
                 : '—';
+
+              const egMention = teamMention(expertGroupId, expertGroup);
               const egStr = expertGroup
                 ? (expertGroup.url
-                    ? `[${expertGroup.label}](${expertGroup.url})`
-                    : expertGroup.label)
+                    ? `[${expertGroup.label}](${expertGroup.url})${egMention ? ` (${egMention})` : ''}`
+                    : `${expertGroup.label}${egMention ? ` (${egMention})` : ''}`)
                 : '—';
 
               return `| ${stdLink} | ${committeeStr} | ${egStr} |`;
