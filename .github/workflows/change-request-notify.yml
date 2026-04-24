@@ -6,10 +6,10 @@ on:
 
 jobs:
   notify:
-    # Run when the "Change Request" label is present on the issue
-    if: >
-      contains(github.event.issue.labels.*.name, 'Change Request') ||
-      github.event.label.name == 'Change Request'
+    # Run when the "Change Request" label is present on the issue.
+    # github.event.issue.labels already includes a newly-added label on the
+    # 'labeled' event, so a single contains() check covers both trigger types.
+    if: contains(github.event.issue.labels.*.name, 'Change Request')
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -27,8 +27,10 @@ jobs:
             // ── 1. Extract the standard identifier from the issue body ──────────
             const issueBody = context.payload.issue.body ?? '';
 
-            // The issue form renders "### Standard\n\nCX-0001: ..." in the body
-            const standardSection = issueBody.match(/###\s+Standard\s*\r?\n+([^\r\n]+)/);
+            // The issue form renders "### Standard\n\nCX-0001: ..." in the body.
+            // Use [\r\n]+ to handle both Unix and Windows line endings, and \s*
+            // to tolerate any leading whitespace before the value on the next line.
+            const standardSection = issueBody.match(/###\s+Standard\s*[\r\n]+\s*([^\r\n]+)/);
             if (!standardSection) {
               console.log('No "Standard" section found in issue body – skipping.');
               return;
