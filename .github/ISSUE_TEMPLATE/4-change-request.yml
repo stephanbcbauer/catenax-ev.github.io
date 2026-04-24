@@ -100,8 +100,12 @@ body:
       label: Release
       description: "Enter the release"
       options:
-        - "R25.12: CX-Titan (Preview)"
-        - "R26.03: CX-Titan"
+        - "R26.06: CX-Neptune (Preview)"
+        - "R26.09: CX-Neptune"
+        - "R26.12: CX-Proteus (Preview)"
+        - "R27.03: CX-Proteus"
+        - "R27.06: CX-Sirius (Preview)"
+        - "R27.09: CX-Sirius"
   - type: textarea
     id: management_summary
     attributes:
