@@ -1,0 +1,120 @@
+name: Change Request (Change an existing Standard)
+description: Propose a change for an existing standard.
+title: "[Change Request] <Add CX-Nr. and Standard name here>"
+labels: "Change Request"
+assignees:
+  - "jmseidel2"
+  - "cx-com-team-tc4s"
+body:
+  - type: dropdown
+    id: standard_to_change
+    attributes:
+      label: Standard
+      description: "Please choose an existing standard that requires modification."
+      options:
+        - "CX-0001: Participant Agent Registration"
+        - "CX-0002: Digital Twins in Catena-X"
+        - "CX-0003: SAMM Aspect Meta Model"
+        - "CX-0005: Item Relationship Service API"
+        - "CX-0006: Registration and Initial Onboarding"
+        - "CX-0007: Minimal Data Provider Service Offering"
+        - "CX-0009: CX Registration API"
+        - "CX-0010: Business Partner Number"
+        - "CX-0011: Issuing Agency"
+        - "CX-0012: Business Partner Data Pool API"
+        - "CX-0014: Employees and Technical Users"
+        - "CX-0015: IAM & Access Control Paradigm for Users and Clients"
+        - "CX-0018: Dataspace Connectivity"
+        - "CX-0030: Aspect Model BoM As Specified"
+        - "CX-0031: Data Model: Material For Homologation"
+        - "CX-0032: Data Model: Part As Specified"
+        - "CX-0044: ECLASS"
+        - "CX-0045: Aspect Model Data Chain Template"
+        - "CX-0049: DID Document"
+        - "CX-0050: Framework Agreement Credential"
+        - "CX-0053: Discovery Finder and BPN Discovery Service APIs"
+        - "CX-0054: Application Service Release"
+        - "CX-0055: Data Processing Patterns for IT System Integration"
+        - "CX-0059: Use Case Behaviour Twin Endurance Predictor"
+        - "CX-0067: Ontology Models to realize federated query in Catena-X "
+        - "CX-0074: Business Partner Gate API"
+        - "CX-0076: Golden Record End-to-End Requirements Standard"
+        - "CX-0077: Data Quality Dashboard"
+        - "CX-0078: Bank Data Verification Dashboard"
+        - "CX-0079: Natural Person Screening Dashboard"
+        - "CX-0080: BPDM Fraud Prevention Service"
+        - "CX-0081: Country Risk API"
+        - "CX-0084: Federated Queries in Data Spaces"
+        - "CX-0094: Aspect Model: Part Site In Formation As Planned"
+        - "CX-0102: Functional Mock Up v1.0.0"
+        - "CX-0105: Asset Tracking Use Case"
+        - "CX-0115: Manufacturing Capability Exchange"
+        - "CX-0116: Sanction Party Watchlist Dashboard"
+        - "CX-0117: Use Case Circular Economy - Secondary Marketplace"
+        - "CX-0118: Delivery Information Exchange"
+        - "CX-0120: Short-Term Material Demand Exchange"
+        - "CX-0121: Planned Production Output Exchange"
+        - "CX-0122: Item Stock Exchange"
+        - "CX-0123: Quality Use Case Standard"
+        - "CX-0125: Traceability Use Case"
+        - "CX-0126: Industry Core: Part Type"
+        - "CX-0127: Industry Core: Part Instance"
+        - "CX-0128: Demand and Capacity Management Data Exchange"
+        - "CX-0129: Request for Quotation Exchange"
+        - "CX-0131: Circularity Core"
+        - "CX-0133: Online Control and Simulation"
+        - "CX-0135: BP Company Certificate Management"
+        - "CX-0136: Use Case PCF"
+        - "CX-0138: Use Case Behaviour Twin Endurance Estimator"
+        - "CX-0141: Use Case Behaviour Twin Health Indicator"
+        - "CX-0142: Shop Floor Information Service"
+        - "CX-0143: Use Case Circular Economy Digital Product Passport Standard"
+        - "CX-0144: ESS Use Case Standard"
+        - "CX-0145: Days of supply Exchange"
+        - "CX-0146: Supply Chain Disruption Notifications"
+        - "CX-0149: Wallet Requirements"
+        - "CX-0150: Logistics and Customs Use Case"
+        - "CX-0151: Industry Core: Basics"
+        - "CX-0152: Policy Constraints for Data Exchange"
+        - "CX-0153: Tariffs Use Case"
+        - "CX-0154: Digital Engineering Master Data"
+        - "CX-0155: Requirements Exchange"
+        - "--------------------------"
+        - "PCF-Rulebook"
+        - "PCF-Verification Framework"
+        - "ESS Code of Conduct"
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      description: "Choose versioning"
+      options:
+        - "Patch"
+        - "Minor"
+        - "Major"
+  - type: dropdown
+    id: release
+    attributes:
+      label: Release
+      description: "Enter the release"
+      options:
+        - "R25.12: CX-Titan (Preview)"
+        - "R26.03: CX-Titan"
+  - type: textarea
+    id: management_summary
+    attributes:
+      label: Management Summary
+      description: "What do you plan to change in comparison to the current standard?"
+      placeholder: "Please provide a management summary of the proposed change. Inlcuding: What is the current issue, what / why / how do you plan to change it and, potentially, what would be the consquence if we do not make the change."
+    validations:
+      required: true
+  - type: textarea
+    id: involved_members
+    attributes:
+      label: Involved Members
+      description: "Please tag all involved members with their respective github handle. Use @username (e.g. @jSchuetz88)"
+      placeholder: "Please add all involved members and contributors to this standard."
+    validations:
+      required: true
