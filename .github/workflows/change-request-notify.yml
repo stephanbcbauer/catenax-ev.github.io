@@ -1,0 +1,175 @@
+name: Change Request – Dependency Notification
+
+on:
+  issues:
+    types: [opened, labeled]
+
+jobs:
+  notify:
+    # Run when the "Change Request" label is present on the issue
+    if: >
+      contains(github.event.issue.labels.*.name, 'Change Request') ||
+      github.event.label.name == 'Change Request'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Post dependency notification comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            // ── 1. Extract the standard identifier from the issue body ──────────
+            const issueBody = context.payload.issue.body ?? '';
+
+            // The issue form renders "### Standard\n\nCX-0001: ..." in the body
+            const standardSection = issueBody.match(/###\s+Standard\s*\r?\n+([^\r\n]+)/);
+            if (!standardSection) {
+              console.log('No "Standard" section found in issue body – skipping.');
+              return;
+            }
+            const standardText = standardSection[1].trim();
+
+            // Accept both "CX-0001: Title" and plain "CX-0001"
+            const cxMatch = standardText.match(/CX-(\d+)/i);
+            if (!cxMatch) {
+              console.log(`Could not extract a CX number from: "${standardText}" – skipping.`);
+              return;
+            }
+
+            // Zero-pad to 4 digits (graph uses "cx0001", owner data uses "0001")
+            const standardNumber = cxMatch[1].padStart(4, '0');
+            const standardId     = `cx${standardNumber}`;
+
+            // ── 2. Load static data files ────────────────────────────────────────
+            const graphData = JSON.parse(
+              fs.readFileSync('./static/standards-graph-data.json', 'utf8')
+            );
+            const ownerData = JSON.parse(
+              fs.readFileSync('./static/standard-owners.json', 'utf8')
+            );
+
+            const nodesById = Object.fromEntries(
+              graphData.nodes.map(n => [n.id, n])
+            );
+
+            // ── 3. Check that the standard exists in the graph ───────────────────
+            const changedNode = nodesById[standardId];
+            if (!changedNode) {
+              console.log(`Standard ${standardId} not found in graph data – skipping.`);
+              return;
+            }
+
+            // ── 4. Find all related standards (both edge directions) ─────────────
+            //   source → target  means "source references / depends on target"
+            const dependsOnIds   = new Set(); // changed standard depends on these
+            const dependentIds   = new Set(); // these depend on the changed standard
+
+            for (const edge of graphData.edges) {
+              if (edge.source === standardId) dependsOnIds.add(edge.target);
+              if (edge.target === standardId) dependentIds.add(edge.source);
+            }
+
+            // Helper: look up committee + expert-group info for a CX node id
+            function getOwnerInfo(nodeId) {
+              const node = nodesById[nodeId];
+              if (!node) return null;
+              const num      = node.number;           // e.g. "0001"
+              const stdOwner = ownerData.standards[num];
+              if (!stdOwner) return { node, committee: null, expertGroup: null };
+
+              const committee = stdOwner.committeeId
+                ? ownerData.committees[stdOwner.committeeId] ?? null
+                : null;
+              const expertGroup = stdOwner.expertGroupId
+                ? ownerData.expertGroups[stdOwner.expertGroupId] ?? null
+                : null;
+
+              return { node, committee, expertGroup };
+            }
+
+            // Helper: format a single standard row for the comment table
+            function formatRow(nodeId) {
+              const info = getOwnerInfo(nodeId);
+              if (!info) return null;
+              const { node, committee, expertGroup } = info;
+              const cxId    = `CX-${node.number}`;
+              const title   = node.title ?? '—';
+              const path    = node.path
+                ? `https://catenax-ev.github.io${node.path}`
+                : null;
+              const stdLink = path ? `[${cxId}: ${title}](${path})` : `${cxId}: ${title}`;
+
+              const committeeStr = committee
+                ? (committee.url ? `[${committee.label}](${committee.url})` : committee.label)
+                : '—';
+              const egStr = expertGroup
+                ? (expertGroup.url
+                    ? `[${expertGroup.label}](${expertGroup.url})`
+                    : expertGroup.label)
+                : '—';
+
+              return `| ${stdLink} | ${committeeStr} | ${egStr} |`;
+            }
+
+            // ── 5. Build the comment body ────────────────────────────────────────
+            const changedCxId = `CX-${changedNode.number}`;
+            const changedTitle = changedNode.title ?? '';
+
+            let body = `## 🔔 Change Request – Dependency Notification\n\n`;
+            body += `A change request has been opened for **${changedCxId}: ${changedTitle}**.\n\n`;
+            body += `The tables below list all standards that are connected to this standard `;
+            body += `via the [Catena-X Standards Graph](https://catenax-ev.github.io). `;
+            body += `Owners of these standards should review the proposed change and assess `;
+            body += `any potential impact on their own standards.\n\n`;
+            body += `> **Please get in contact with the Standard Owner or inform yourself `;
+            body += `during the related meetings (e.g. internal Planning).**\n\n`;
+
+            const tableHeader = `| Standard | Committee | Expert Group |\n| --- | --- | --- |`;
+
+            // Standards that DEPEND ON the changed standard (most relevant)
+            if (dependentIds.size > 0) {
+              body += `### Standards that reference / depend on ${changedCxId}\n\n`;
+              body += `These standards directly reference **${changedCxId}** and may be impacted by the proposed change.\n\n`;
+              body += tableHeader + '\n';
+              for (const id of [...dependentIds].sort()) {
+                const row = formatRow(id);
+                if (row) body += row + '\n';
+              }
+              body += '\n';
+            }
+
+            // Standards the changed standard depends on
+            if (dependsOnIds.size > 0) {
+              body += `### Standards that ${changedCxId} depends on\n\n`;
+              body += `The proposed change to **${changedCxId}** may affect these referenced standards.\n\n`;
+              body += tableHeader + '\n';
+              for (const id of [...dependsOnIds].sort()) {
+                const row = formatRow(id);
+                if (row) body += row + '\n';
+              }
+              body += '\n';
+            }
+
+            if (dependentIds.size === 0 && dependsOnIds.size === 0) {
+              body += `_No dependency relationships found for ${changedCxId} in the standards graph._\n\n`;
+            }
+
+            body += `---\n`;
+            body += `*This comment was generated automatically by the [Change Request – Dependency Notification]`;
+            body += `(${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/workflows/change-request-notify.yml) workflow.*`;
+
+            // ── 6. Post the comment ──────────────────────────────────────────────
+            await github.rest.issues.createComment({
+              owner:      context.repo.owner,
+              repo:       context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body,
+            });
+
+            console.log(`Comment posted on issue #${context.payload.issue.number}`);
