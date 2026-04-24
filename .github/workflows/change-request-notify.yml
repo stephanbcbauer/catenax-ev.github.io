@@ -106,14 +106,20 @@ jobs:
               return { node, committeeId, committee, expertGroupId, expertGroup };
             }
 
-            // Helper: derive the GitHub @org/team mention from a team URL, falling back to the id
+            // Helper: derive the GitHub @org/team mention from a team URL, falling back to the id.
+            // Only alphanumeric characters and hyphens are accepted for org and team slug values.
+            const SLUG_RE = /^[a-zA-Z0-9-]+$/;
             function teamMention(id, teamObj) {
               if (!id) return null;
               // URL format: https://github.com/orgs/<org>/teams/<slug>
               const urlMatch = teamObj?.url?.match(/orgs\/([^/]+)\/teams\/([^/]+)/);
-              if (urlMatch) return `@${urlMatch[1]}/${urlMatch[2]}`;
+              if (urlMatch) {
+                const [, org, slug] = urlMatch;
+                if (SLUG_RE.test(org) && SLUG_RE.test(slug)) return `@${org}/${slug}`;
+              }
               // Fallback: assume the catenax-eV org and use the id as the slug
-              return `@catenax-eV/${id}`;
+              if (SLUG_RE.test(id)) return `@catenax-eV/${id}`;
+              return null;
             }
 
             // Helper: format a single standard row for the comment table
