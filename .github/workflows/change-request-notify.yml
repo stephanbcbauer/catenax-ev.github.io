@@ -2,14 +2,15 @@ name: Change Request – Dependency Notification
 
 on:
   issues:
-    types: [opened, labeled]
+    types: [labeled]
 
 jobs:
   notify:
-    # Run when the "Change Request" label is present on the issue.
-    # github.event.issue.labels already includes a newly-added label on the
-    # 'labeled' event, so a single contains() check covers both trigger types.
-    if: contains(github.event.issue.labels.*.name, 'Change Request')
+    # Run only when the "Change Request" label is the one being added.
+    # Using github.event.label.name (the label that triggered this event)
+    # instead of scanning all labels ensures the job runs exactly once,
+    # whether the label is applied at issue creation (via template) or added later.
+    if: github.event.label.name == 'Change Request'
     runs-on: ubuntu-latest
     permissions:
       issues: write
