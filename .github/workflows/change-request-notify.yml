@@ -137,15 +137,15 @@ jobs:
               const committeeMention = teamMention(committeeId, committee);
               const committeeStr = committee
                 ? (committee.url
-                    ? `[${committee.label}](${committee.url})${committeeMention ? ` (${committeeMention})` : ''}`
-                    : `${committee.label}${committeeMention ? ` (${committeeMention})` : ''}`)
+                    ? `[${committee.label}](${committee.url})${committeeMention ? ` ${committeeMention}` : ''}`
+                    : `${committee.label}${committeeMention ? ` ${committeeMention}` : ''}`)
                 : '—';
 
               const egMention = teamMention(expertGroupId, expertGroup);
               const egStr = expertGroup
                 ? (expertGroup.url
-                    ? `[${expertGroup.label}](${expertGroup.url})${egMention ? ` (${egMention})` : ''}`
-                    : `${expertGroup.label}${egMention ? ` (${egMention})` : ''}`)
+                    ? `[${expertGroup.label}](${expertGroup.url})${egMention ? ` ${egMention}` : ''}`
+                    : `${expertGroup.label}${egMention ? ` ${egMention}` : ''}`)
                 : '—';
 
               return `| ${stdLink} | ${committeeStr} | ${egStr} |`;
